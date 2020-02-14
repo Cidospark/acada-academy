@@ -1,6 +1,6 @@
 {
   "MailSettings": {
-    "ToAddress": "bravedarlin@yahoo.co.uk"
+    "ToAddress": "lin@yahoo.co.uk"
   },
   "ConnectionStrings": {
     "AcadaConnection": "Data Source=DESKTOP-1CH1I23;Initial Catalog=AcadaDb;Integrated Security=True"
