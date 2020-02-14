@@ -3,7 +3,6 @@
     "ToAddress": "bravedarlin@yahoo.co.uk"
   },
   "ConnectionStrings": {
-    //"AcadaConnection": "Server=localhost;Database=AcadaDB;User Id=sa;Password=Mulata00;MultipleActiveResultSets=true;",
     "AcadaConnection": "server=(localdb)\\MSSQLLocalDB;Database=AcadaDB;Trusted_Connection=true"
   },
   "Keys": {
