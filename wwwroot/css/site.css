@@ -1,0 +1,116 @@
+﻿/*body {
+    font-family: 'Adobe Devanagari';
+    font-size: 15px;
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+}
+
+input[type=text], input[type=password], textarea {
+    width: 150px;
+}
+
+.menu {
+    font-size: 12px;
+}
+
+    .menu li {
+        list-style-type: none;
+    }
+
+    .menu .active {
+        font-weight: bold;
+        font-size: 14px;
+    }
+*/
+.headshot {
+    max-width: 50px;
+}
+    
+#username {
+    color:grey;
+}
+#sidebar {
+    background: ghostwhite;
+    color: aliceblue;
+    position: fixed;
+    height: 100%;
+    width: 200px;
+    overflow: hidden;
+    left: 0;
+    margin: 0;
+    border-right: 1px solid lightgray;
+    -moz-transition: left ease .25s;
+    -o-transition: left ease .25s;
+    -webkit-transition: left ease .25s;
+    transition: left ease .25s;
+}
+
+    #sidebar.hide-sidebar {
+        left: -200px;
+        -moz-transition: left ease .25s;
+        -o-transition: left ease .25s;
+        -webkit-transition: left ease .25s;
+        transition: left ease .25s;
+    }
+
+#wrapper {
+    /* border:black 1px solid;*/
+    padding: 0;
+    margin: 0 0 0 200px;
+    -moz-transition: margin-left ease .25s;
+    -o-transition: margin-left ease .25s;
+    -webkit-transition: margin-left ease .25s;
+    transition: margin-left ease .25s;
+}
+
+    #wrapper.hide-sidebar {
+        margin-left: 0;
+        -moz-transition: margin-left ease .25s;
+        -o-transition: margin-left ease .25s;
+        -webkit-transition: margin-left ease .25s;
+        transition: margin-left ease .25s;
+    }
+
+
+
+#fzone {
+    padding-top: 5px;
+}
+
+#container {
+    background-color: white;
+    vertical-align: top;
+    padding: 0;
+}
+
+
+#footer {
+    border-top: 1px solid Silver;
+    border-bottom: 1px solid Silver;
+    background-color: white;
+    width: 100%;
+    position: fixed;
+    font-size: 9px;
+    padding: 0px;
+    bottom: 0;
+}
+
+#map {
+    width: 100%;
+    height: 600px;
+}
+.infoWindowContent {
+    font-size: 14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+
+h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+}

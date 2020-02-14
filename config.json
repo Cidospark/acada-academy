@@ -1,0 +1,12 @@
+{
+  "MailSettings": {
+    "ToAddress": "bravedarlin@yahoo.co.uk"
+  },
+  "ConnectionStrings": {
+    //"AcadaConnection": "Server=localhost;Database=AcadaDB;User Id=sa;Password=Mulata00;MultipleActiveResultSets=true;",
+    "AcadaConnection": "server=(localdb)\\MSSQLLocalDB;Database=AcadaDB;Trusted_Connection=true"
+  },
+  "Keys": {
+    "BingKey": "AtD-7szmoGg_5dW-ZRWRU8hxW2kM033Yo3gatNhOcbwa-73dNNiC3STcR7LbNQHc"
+  }
+} 

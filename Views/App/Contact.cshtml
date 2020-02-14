@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model AcadaAcademy.ViewModels.ContactViewModel
+@{
+    ViewBag.Title = "Contact Page";
+}
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div class="row">
+
+    <div class="col-md-6 col-md-offset-3">
+       
+        <h3>Contact Us</h3>
+        
+        <form method="post">
+
+            @if (ViewBag.UserMessage != null)
+            {
+                <div style="color:darkblue">@ViewBag.UserMessage</div>
+
+            }
+            <span asp-validation-summary="ModelOnly"></span>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" type="text" id="fname" class="form-control" />
+                <span asp-validation-for="Name" class="text-muted"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="email" id="emailadd" class="form-control"/>
+                <span asp-validation-for="Email" class="text-muted"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message"></label>
+                <textarea asp-for="Message" cols="20" rows="4" class="form-control"></textarea>
+                <span asp-validation-for="Message" class="text-muted"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit Message" class="btn btn-success"/>
+            </div>
+        </form>
+    </div>
+
+</div>
