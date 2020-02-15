@@ -1,4 +1,4 @@
-﻿@model LostZone.ViewModels.RegisterViewModel
+﻿@model AcadaAcademy.ViewModels.RegisterViewModel
 @{
     ViewBag.Title = "REGISTER";
 }
@@ -7,8 +7,18 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <h3>Register</h3>
-        <form method="post" asp-controller="Account" asp-action="Register" >
+        <form method="post" asp-controller="Account" asp-action="Register">
             <div asp-asp-validation-summary="ValidationSummary.ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
@@ -33,6 +43,15 @@
                 <label asp-for="PhoneNumber"></label>
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender"></label>
+                <select asp-for="Gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Register" class="btn btn-success" />
