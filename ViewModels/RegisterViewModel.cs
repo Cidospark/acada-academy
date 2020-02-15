@@ -23,6 +23,9 @@ namespace AcadaAcademy.ViewModels
         public string Gender { get; set; }
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
         [Required]
         [Display(Name = "Username")]
         public string UserName { get; set; }

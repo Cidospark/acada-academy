@@ -54,6 +54,7 @@ namespace LostZone.Controllers
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     Gender = model.Gender,
+                    Address = model.Address
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
