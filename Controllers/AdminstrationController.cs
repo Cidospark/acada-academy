@@ -59,80 +59,82 @@ namespace edu_first.Controllers
             return View(model);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> EditUser(EditUserViewModel model)
-        //{
-        //    var user = await _userManager.FindByIdAsync(model.Id);
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditUserViewModel model)
+        {
+            var user = await _userManager.FindByIdAsync(model.Id);
 
-        //    if (user == null)
-        //    {
-        //        ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
-        //        return RedirectToAction("index");
-        //    }
-        //    else
-        //    {
-        //        user.LastName = model.LastName;
-        //        user.FirstName = model.FirstName;
-        //        user.Email = model.Email;
-        //        user.PhoneNumber = model.PhoneNumber;
-        //        user.Address = model.Address;
-        //        user.Gender = model.Gender;
-        //        var result = await _userManager.UpdateAsync(user);
-        //        if (result.Succeeded)
-        //        {
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
+                return RedirectToAction("index");
+            }
+            else
+            {
+                user.LastName = model.LastName;
+                user.FirstName = model.FirstName;
+                user.Email = model.Email;
+                user.PhoneNumber = model.PhoneNumber;
+                user.Address = model.Address;
+                user.Gender = model.Gender;
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
 
-        //            return RedirectToAction("EditUser");
-        //        }
+                    return RedirectToAction("EditUser");
+                }
 
-        //        foreach (var error in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
 
-        //        return View("ListAllUser");
+                return View("ListAllAcadaUser");
 
-        //    }
-        //}
+            }
+        }
 
-        //// POST: /Account/DeleteUser
-        //[HttpPost]
-        //public async Task<IActionResult> DeleteUser(string id)
-        //{
-        //    var user = await _userManager.FindByIdAsync(id);
-        //    if (user == null)
-        //    {
-        //        ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
-        //        return View("Not Found");
-        //    }
-        //    else
-        //    {
+        // POST: /Account/DeleteUser
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                return View("Not Found");
+            }
+            else
+            {
 
-        //        var result = await _userManager.DeleteAsync(user);
-        //        if (result.Succeeded)
-        //        {
+                var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
 
-        //            return RedirectToAction("ListAllUser");
-        //        }
+                    return RedirectToAction("ListAllAcadaUser");
+                }
 
-        //        foreach (var error in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
 
-        //        return View("ListAllUser");
-        //    }
+                return View("ListAllAcadaUser");
+            }
 
-        //}
+        }
 
         ///// <summary>
         ///// Handle Roles
         ///// </summary>
         ///// <returns></returns>
-        //[HttpGet]
-        //public IActionResult CreateRole()
-        //{
-        //    return View();
-        //}
+        ///
+        [HttpGet]
+        public IActionResult CreateRole()
+        {
+            return View();
+        }
+
         //// Create rows
         //[HttpPost]
         //public async Task<IActionResult> CreateRole(RoleViewModel model)
