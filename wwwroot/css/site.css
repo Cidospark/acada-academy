@@ -114,3 +114,41 @@ h2 {
     margin-bottom: 0;
     margin-top: 0;
 }
+
+.display-flex{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.div-form,.div-table{
+    width: 100%;
+    margin:20px;
+}
+
+.sep{
+    display:inline-block;
+    width:20%;
+    color:#ddd;
+}
+.btn-mgr-records{
+    text-align:center;
+}
+.del, .edit{cursor:pointer;}
+.del{color:#faa;}
+.del:hover{color:#f55; font-weight:bold;}
+.edit:hover{color:navy; font-weight:bold;}
+
+@media all and (min-width:800px) {
+    .display-flex {
+        flex-direction: row;
+    }
+    .div-form {
+        flex: 2 1 30%;
+    }
+
+    .div-table {
+        flex: 2 1 55%;
+        margin-left:60px;
+    }
+}

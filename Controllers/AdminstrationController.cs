@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AcadaAcademy.DataModels;
+using AcadaAcademy.Models;
 using AcadaAcademy.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,17 @@ namespace edu_first.Controllers
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<AcadaUser> _userManager;
-        public AdminstrationController(RoleManager<IdentityRole> roleManager, UserManager<AcadaUser> userManager)
+        private readonly ICourseRepository courseRepository;
+
+        public AdminstrationController(
+            RoleManager<IdentityRole> roleManager, 
+            UserManager<AcadaUser> userManager,
+            ICourseRepository courseRepository
+            )
         {
             _roleManager = roleManager;
             _userManager = userManager;
+            this.courseRepository = courseRepository;
         }
 
         //List All AcadaUser
@@ -268,6 +276,30 @@ namespace edu_first.Controllers
                 return View("ListAllAcadaUser");
             }
 
+        }
+		
+		 // GET: Add Course
+        [HttpGet]
+        public ViewResult AddCourse()
+        {
+            return View();
+        }
+
+        // POST: Add Course
+        [HttpPost]
+        public IActionResult AddCourse(CourseViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Course newModel = new Course
+                {
+                    Title = model.Title
+                };
+                courseRepository.AddCourse(newModel);
+                return RedirectToAction("AddCourse");
+
+            }
+            return View();
         }
 
     }

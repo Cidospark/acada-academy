@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Net;
+using AcadaAcademy.Models;
 
 namespace LostZone
 {
@@ -55,6 +56,7 @@ namespace LostZone
 
             services.AddTransient<GeoService>();
             services.AddScoped<IAcadaRepository, AcadaRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddTransient<AcadaContextSeedData>();
             services.AddLogging();
 

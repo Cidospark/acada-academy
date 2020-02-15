@@ -1,0 +1,65 @@
+﻿@model CourseViewModel
+@inject ICourseRepository Courses
+@{
+    ViewBag.Title = "Add Course";
+    int counter = 0;
+}
+
+
+<div class="display-flex">
+    <div class="row div-form">
+        <h3 class="page-title">@ViewBag.Title</h3>
+        <h6><strong>Create a new course.</strong></h6>
+        <div class="">
+            <form asp-controller="Adminstration" asp-action="AddCourse" method="post">
+                
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-default">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <br /><br />
+          <div class="row div-table">
+              <h3 class="page-title">List of Courses</h3>
+              <h6><strong>Edit or delete course using the manage record column</strong></h6>
+              <br/>
+              <div class="">
+                  <table class="table table-hover table-striped table-bordered table-borderless">
+                      <thead>
+                          <tr>
+                              <th><b>Serial Number</b></th>
+                              <th><b>Course</b></th>
+                              <th><center><b>Manage Record</b></center></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+
+                          @foreach (var course in Courses.fetchAllCourses())
+                          {
+                              counter += 1;
+                              <tr>
+                                  <td>@counter</td>
+                                  <td>@course.Title</td>
+                                  <td>
+                                      <div class="btn-mgr-records">
+                                          <a asp-action="EditCourse" asp-controller="Administration" asp-route-id="@course.CourseId">
+                                              <i class="fa fa-pencil edit"></i>
+                                          </a>
+                                          <span class="sep">|</span>
+                                          <i class="fa fa-trash-o del"></i>
+                                      </div>
+                                  </td>
+                              </tr>
+                          }
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+</div>
