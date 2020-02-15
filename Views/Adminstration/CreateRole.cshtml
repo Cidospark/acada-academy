@@ -41,12 +41,19 @@
                     <tr>
                         <td>@counter</td>
                         <td>@role.Name</td>
-                        <td><a class="btn btn-primary" asp-controller="Adminstration" asp-action="EditRole" asp-route-id="@role.Id">Edit</a>
-                        &nbsp; | &nbsp; 
-                        Delete</td>
+                        <td>
+                            <form asp-action="DeleteRole" asp-controller="Adminstration" asp-route-id="@role.Id" method="post">
+                                <a class="btn btn-primary" asp-controller="Adminstration" asp-action="EditRole" asp-route-id="@role.Id">Edit</a>
+                                &nbsp; | &nbsp;
+                                <button class="btn btn-danger" type="submit">Delete</button>
+
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+
+
