@@ -61,7 +61,7 @@ namespace LostZone.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("index");
+                    return RedirectToAction("index", "App");
                 }
 
                 foreach (var error in result.Errors)
@@ -97,7 +97,7 @@ namespace LostZone.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    return RedirectToAction("index");
+                    return RedirectToAction("index", "App");
                 }
                 //if (result.RequiresTwoFactor)
                 //{
@@ -119,14 +119,16 @@ namespace LostZone.Controllers
             return View(model);
         }
 
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LogOff()
+        
+        //Logout out signed in user and redirect action to the home page
+        public async Task<ActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation(4, "User logged out.");
-            return RedirectToAction("Index", "Account");
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+
+            return RedirectToAction("Index", "App");
         }
 
 
