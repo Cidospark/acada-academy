@@ -3,7 +3,7 @@
     "ToAddress": "lin@yahoo.co.uk"
   },
   "ConnectionStrings": {
-    "AcadaConnection": "Data Source=DESKTOP-1CH1I23;Initial Catalog=AcadaDb;Integrated Security=True"
+    "AcadaConnection": "Data Source=.;Initial Catalog=AcadaDb;Integrated Security=True"
   },
   "Keys": {
     "BingKey": "AtD-7szmoGg_5dW-ZRWRU8hxW2kM033Yo3gatNhOcbwa-73dNNiC3STcR7LbNQHc"
