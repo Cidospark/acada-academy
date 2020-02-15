@@ -136,112 +136,110 @@ namespace edu_first.Controllers
         }
 
         //// Create rows
-        //[HttpPost]
-        //public async Task<IActionResult> CreateRole(RoleViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        IdentityRole identityRole = new IdentityRole { Name = model.RoleName };
-        //        IdentityResult result = await _roleManager.CreateAsync(identityRole);
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(RoleViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityRole identityRole = new IdentityRole { Name = model.RoleName };
+                IdentityResult result = await _roleManager.CreateAsync(identityRole);
 
-        //        if (result.Succeeded)
-        //        {
+                if (result.Succeeded)
+                {
 
-        //            return RedirectToAction("index");
-        //        }
+                    return RedirectToAction("CreateRole");
+                }
 
-        //        foreach (var error in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
-        //    }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
 
 
-        //    return View();
-        //}
+            return View();
+        }
 
         //// Edit Roles
-        //[HttpGet]
-        //public async Task<IActionResult> EditRole(string id)
-        //{
-        //    var role = await _roleManager.FindByIdAsync(id);
-        //    if (role == null)
-        //    {
-        //        ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
-        //        return RedirectToAction("index");
-        //    }
+        [HttpGet]
+        public async Task<IActionResult> EditRole(string id)
+        {
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {id} cannot be found";
+                return RedirectToAction("index");
+            }
 
-        //    var model = new EditRoleViewModel
-        //    {
-        //        Id = role.Id,
-        //        RoleName = role.Name
-        //    };
+            var model = new EditRoleViewModel
+            {
+                Id = role.Id,
+                RoleName = role.Name
+            };
 
-        //    foreach (var user in _userManager.Users)
-        //    {
-        //        if (await _userManager.IsInRoleAsync(user, role.Name))
-        //        {
-        //            model.AcadaUser.Add(user.UserName);
-        //        }
-        //    }
+            foreach (var user in _userManager.Users)
+            {
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    model.Users.Add(user.UserName);
+                }
+            }
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         //[HttpPost]
-        //public async Task<IActionResult> EditRole(EditRoleViewModel model)
-        //{
-        //    var role = await _roleManager.FindByIdAsync(model.Id);
-        //    if (role == null)
-        //    {
-        //        ViewBag.ErrorMessage = $"Role with Id = {model.Id} cannot be found";
-        //        return RedirectToAction("EditRole");
-        //    }
-        //    else
-        //    {
-        //        role.Name = model.RoleName;
-        //        var result = await _roleManager.UpdateAsync(role);
-        //        if (result.Succeeded)
-        //        {
+        public async Task<IActionResult> EditRole(EditRoleViewModel model)
+        {
+            var role = await _roleManager.FindByIdAsync(model.Id);
+            if (role == null)
+            {
+                ViewBag.ErrorMessage = $"Role with Id = {model.Id} cannot be found";
+                return RedirectToAction("EditRole");
+            }
+            else
+            {
+                role.Name = model.RoleName;
+                var result = await _roleManager.UpdateAsync(role);
+                if (result.Succeeded)
+                {
 
-        //            return RedirectToAction("EditRole");
-        //        }
+                    return RedirectToAction("EditRole");
+                }
 
-        //        foreach (var error in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
-        //    }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
 
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
+
+
         //// Add User to Role
-        //[HttpPost]
-        //public async Task<IActionResult> AddUserInRole(string UserId, string roleStr)
-        //{
-        //    var user = await _userManager.FindByIdAsync(UserId);
+        [HttpPost]
+        public async Task<IActionResult> AddUserInRole(string UserId, string roleStr)
+        {
+            var user = await _userManager.FindByIdAsync(UserId);
 
-        //    var idResult = await _userManager.AddToRoleAsync(user, roleStr);
+            var idResult = await _userManager.AddToRoleAsync(user, roleStr);
 
-        //    if (idResult.Succeeded)
-        //    {
+            if (idResult.Succeeded)
+            {
 
-        //        return RedirectToAction("EditRole");
-        //    }
+                return RedirectToAction("EditRole");
+            }
 
-        //    foreach (var error in idResult.Errors)
-        //    {
-        //        ModelState.AddModelError("", error.Description);
-        //    }
+            foreach (var error in idResult.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+            }
 
-        //    return View();
-        //}
+            return View();
+        }
 
-        //[HttpPost]
-        //public ActionResult AddUserInRole(string UserId, string roleStr)
-        //{
-        //    return Content("UserId:" +UserId +"---- RoleId"+ roleStr);
-        //}
+        
     }
 }
