@@ -138,6 +138,10 @@ h2 {
 .del{color:#faa;}
 .del:hover{color:#f55; font-weight:bold;}
 .edit:hover{color:navy; font-weight:bold;}
+.detbtn{
+    background:transparent;
+    border:0px;
+}
 
 @media all and (min-width:800px) {
     .display-flex {

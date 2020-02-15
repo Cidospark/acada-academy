@@ -302,5 +302,29 @@ namespace edu_first.Controllers
             return View();
         }
 
+        // GET: Edit Course
+        [HttpGet]
+        public IActionResult EditCourse(int id)
+        {
+            var model = courseRepository.fetchCourse(id);
+            return View(model);
+        }
+
+        // POST: Delete Course
+        [HttpPost]
+        public IActionResult DeleteCourse(int id)
+        {
+            var course = courseRepository.fetchCourse(id);
+
+            if (course == null )
+            {
+                return View("NotFound");
+            }
+
+            courseRepository.DeleteCourse(id);
+            return RedirectToAction("AddCourse");
+
+        }
+
     }
 }

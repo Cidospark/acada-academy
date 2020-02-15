@@ -49,11 +49,16 @@
                                   <td>@course.Title</td>
                                   <td>
                                       <div class="btn-mgr-records">
-                                          <a asp-action="EditCourse" asp-controller="Administration" asp-route-id="@course.CourseId">
-                                              <i class="fa fa-pencil edit"></i>
-                                          </a>
-                                          <span class="sep">|</span>
-                                          <i class="fa fa-trash-o del"></i>
+                                           <form asp-action="DeleteCourse" asp-controller="Adminstration" asp-route-id="@course.CourseId" method="post">
+                                              <a asp-action="EditCourse" asp-controller="Adminstration" asp-route-id="@course.CourseId">
+                                                  <i class="fa fa-pencil edit"></i>
+                                              </a>
+                                              <span class="sep">|</span>
+                                              <button class="detbtn" type="submit" onclick="return confirm('This action will delete @course.Title course, \nPlease confirm action')">
+                                                    <i class="fa fa-trash-o del"></i>
+                                              </button>
+
+                                          </form>
                                       </div>
                                   </td>
                               </tr>
