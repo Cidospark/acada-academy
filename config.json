@@ -1,9 +1,9 @@
 {
   "MailSettings": {
-    "ToAddress": "bravedarlin@yahoo.co.uk"
+    "ToAddress": "lin@yahoo.co.uk"
   },
   "ConnectionStrings": {
-    "AcadaConnection": "server=(localdb)\\MSSQLLocalDB;Database=AcadaDB;Trusted_Connection=true"
+    "AcadaConnection": "Data Source=DESKTOP-1CH1I23;Initial Catalog=AcadaDb;Integrated Security=True"
   },
   "Keys": {
     "BingKey": "AtD-7szmoGg_5dW-ZRWRU8hxW2kM033Yo3gatNhOcbwa-73dNNiC3STcR7LbNQHc"

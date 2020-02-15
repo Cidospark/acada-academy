@@ -11,9 +11,10 @@ using System;
 namespace AcadaAcademy.Migrations
 {
     [DbContext(typeof(AcadaContext))]
-    partial class AcadaContextModelSnapshot : ModelSnapshot
+    [Migration("20200214234342_AddUsers")]
+    partial class AddUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

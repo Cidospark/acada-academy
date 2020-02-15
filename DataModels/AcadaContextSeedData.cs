@@ -29,11 +29,15 @@ namespace AcadaAcademy.DataModels
 
                 var user = new AcadaUser()
                 {
-                    UserName = "newuser",
-                    Email = "example@example.com"
+                    UserName = "Admin",
+                    Email = "example@example.com",
+                    Address = "x no nsjskososo hshs",
+                    FirstName = "Bingo",
+                    LastName = "Jombo",
+                    Gender = "Male"
                 };
 
-                await _userManager.CreateAsync(user, "NewUser123!");
+                await _userManager.CreateAsync(user, "Admin123!");
             }
 
             //check to see if test items has been posted or post it

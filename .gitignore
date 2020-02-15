@@ -245,4 +245,4 @@ paket-files/
 *.sln.iml
 
 
-/AcadaAcademy/config.json
+.AcadaAcademy/config.json
