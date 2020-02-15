@@ -112,6 +112,7 @@ namespace LostZone.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    
                     return View(model);
                 }
             }
