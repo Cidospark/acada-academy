@@ -146,6 +146,11 @@ h2 {
     border:0px;
 }
 
+.sitename{
+    padding-left:20px;
+    color:skyblue;
+}
+
 @media all and (min-width:800px) {
     .display-flex {
         flex-direction: row;
