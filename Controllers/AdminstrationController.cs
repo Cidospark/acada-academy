@@ -16,28 +16,31 @@ namespace edu_first.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<AcadaUser> _userManager;
         private readonly ICourseRepository courseRepository;
+        private readonly ISessionRepository sessionRepository;
 
+        //========= Constructor ==============
         public AdminstrationController(
             RoleManager<IdentityRole> roleManager, 
             UserManager<AcadaUser> userManager,
-            ICourseRepository courseRepository
+            ICourseRepository courseRepository,
+            ISessionRepository sessionRepository
             )
         {
             _roleManager = roleManager;
             _userManager = userManager;
             this.courseRepository = courseRepository;
+            this.sessionRepository = sessionRepository;
         }
 
-        //List All AcadaUser
+        //========= Users ==============
+        // GET: List All AcadaUser
         [HttpGet]
         public IActionResult ListAllAcadaUser()
         {
             var AcadaUser = _userManager.Users;
             return View(AcadaUser);
         }
-
-
-        // Edit User
+        // GET: Edit User
         [HttpGet]
         public async Task<IActionResult> EditUser(string id)
         {
@@ -66,7 +69,7 @@ namespace edu_first.Controllers
 
             return View(model);
         }
-
+        //  POST: Edit User
         [HttpPost]
         public async Task<IActionResult> EditUser(EditUserViewModel model)
         {
@@ -101,8 +104,7 @@ namespace edu_first.Controllers
 
             }
         }
-
-        // POST: /Account/DeleteUser
+        // POST: DeleteUser
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string id)
         {
@@ -132,18 +134,14 @@ namespace edu_first.Controllers
 
         }
 
-        ///// <summary>
-        ///// Handle Roles
-        ///// </summary>
-        ///// <returns></returns>
-        ///
+        //========= Roles ==============
+        // GET: Create Role
         [HttpGet]
         public IActionResult CreateRole()
         {
             return View();
         }
-
-        //// Create rows
+        //// POST: Create rows
         [HttpPost]
         public async Task<IActionResult> CreateRole(RoleViewModel model)
         {
@@ -164,11 +162,9 @@ namespace edu_first.Controllers
                 }
             }
 
-
             return View();
         }
-
-        //// Edit Roles
+        //// GET: Edit Roles
         [HttpGet]
         public async Task<IActionResult> EditRole(string id)
         {
@@ -195,8 +191,8 @@ namespace edu_first.Controllers
 
             return View(model);
         }
-
-        //[HttpPost]
+        // POST: Edit Role
+        [HttpPost]
         public async Task<IActionResult> EditRole(EditRoleViewModel model)
         {
             var role = await _roleManager.FindByIdAsync(model.Id);
@@ -224,8 +220,6 @@ namespace edu_first.Controllers
 
             return View(model);
         }
-
-
         //// Add User to Role
         [HttpPost]
         public async Task<IActionResult> AddUserInRole(string UserId, string roleStr)
@@ -247,8 +241,7 @@ namespace edu_first.Controllers
 
             return View();
         }
-
-        // POST: /Role
+        // POST: Delete Role
         [HttpPost]
         public async Task<IActionResult> DeleteRole(string id)
         {
@@ -277,8 +270,10 @@ namespace edu_first.Controllers
             }
 
         }
-		
-		 // GET: Add Course
+
+
+        //========= Courses ==============
+        // GET: Add Course
         [HttpGet]
         public ViewResult AddCourse()
         {
@@ -299,9 +294,8 @@ namespace edu_first.Controllers
                 return RedirectToAction("AddCourse");
 
             }
-            return View();
+            return View(model);
         }
-
         // GET: Edit Course
         [HttpGet]
         public IActionResult EditCourse(int id)
@@ -318,9 +312,9 @@ namespace edu_first.Controllers
                 var course = courseRepository.fetchCourse(model.CourseId);
                 course.Title = model.Title;
                 courseRepository.UpdateCourse(course);
-                RedirectToAction("AddCourse");
+                return RedirectToAction("AddCourse");
             }
-            return View();
+            return View(model);
         }
 
         // POST: Delete Course
@@ -339,5 +333,62 @@ namespace edu_first.Controllers
 
         }
 
+        //========= Sessions ==============
+        // GET: Add Session
+        [HttpGet]
+        public IActionResult AddSession()
+        {
+            return View();
+        }
+        // POST: Add Session
+        [HttpPost]
+        public IActionResult AddSession(SessionViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Session newModel = new Session
+                {
+                    Name = model.Name
+                };
+                sessionRepository.AddSession(newModel);
+                return RedirectToAction("AddSession");
+            }
+            return View(model);
+        }
+        // GET: Edit Session
+        [HttpGet]
+        public IActionResult EditSession(int id)
+        {
+            var session = sessionRepository.fetchSession(id);
+            return View(session);
+        }
+        // POST: Edit Session
+        [HttpPost]
+        public IActionResult EditSession(Session model)
+        {
+            if (ModelState.IsValid)
+            {
+                var session = sessionRepository.fetchSession(model.SessionId);
+                session.Name = model.Name;
+                sessionRepository.UpdateSession(session);
+                return RedirectToAction("AddSession");
+            }
+            return View(model);
+        }
+        // POST: Delete Session
+        [HttpPost]
+        public IActionResult DeleteSession(int id)
+        {
+            var session = sessionRepository.fetchSession(id);
+
+            if (session == null)
+            {
+                return View("NotFound");
+            }
+
+            sessionRepository.DeleteSession(id);
+            return RedirectToAction("AddSession");
+
+        }
     }
 }

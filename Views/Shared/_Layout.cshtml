@@ -1,8 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    @{ 
+        ViewData["sitename"] = "ACADA ACDEMY";
+    }
     <meta charset="utf-8" />
-    <title>OMBUDSBOT - @ViewBag.Title</title>
+    <title>@ViewData["sitename"] - @ViewBag.Title</title>
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/bootswatch/yeti/bootstrap.min.css" />
@@ -25,9 +28,10 @@
         <a class="list-group-item" asp-controller="App" asp-action="Contact"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Contact Us</a>
         @if (User.Identity.IsAuthenticated)
         {
-            <a class="list-group-item" asp-controller="Adminstration" asp-action="AddCourse"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp;Add Course</a>
+            <a class="list-group-item" asp-controller="Adminstration" asp-action="AddCourse"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp;Manage Courses</a>
+            <a class="list-group-item" asp-controller="Adminstration" asp-action="AddSession"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>&nbsp;Manage Sessions</a>
             <a class="list-group-item" asp-controller="Adminstration" asp-action="ListAllAcadaUser"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp;Manage Users</a>
-            <a class="list-group-item" asp-controller="Adminstration" asp-action="CreateRole"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp;Manage Roles</a>
+            <a class="list-group-item" asp-controller="Adminstration" asp-action="CreateRole"><i class="fa fa-tasks fa-fw" aria-hidden="true"></i>&nbsp;Manage Roles</a>
             <a class="list-group-item" asp-controller="Account" asp-action="Logout"><i class="fa fa-power-off fa-fw" aria-hidden="true"></i>&nbsp; Sign Out</a>
         }
 
@@ -45,6 +49,7 @@
                                 <button id="sidetog" class="btn btn-primary">
                                     <i class="fa fa-angle-left"></i>
                                 </button>
+                                <span class="sitename">@ViewData["sitename"]</span>
                             </li>
                         </ul>
                     </div>
