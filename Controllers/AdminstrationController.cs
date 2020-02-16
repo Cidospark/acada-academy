@@ -306,8 +306,21 @@ namespace edu_first.Controllers
         [HttpGet]
         public IActionResult EditCourse(int id)
         {
-            var model = courseRepository.fetchCourse(id);
-            return View(model);
+            var course = courseRepository.fetchCourse(id);
+            return View(course);
+        }
+        // POST: Edit Course
+        [HttpPost]
+        public IActionResult EditCourse(Course model)
+        {
+            if (ModelState.IsValid)
+            {
+                var course = courseRepository.fetchCourse(model.CourseId);
+                course.Title = model.Title;
+                courseRepository.UpdateCourse(course);
+                RedirectToAction("AddCourse");
+            }
+            return View();
         }
 
         // POST: Delete Course

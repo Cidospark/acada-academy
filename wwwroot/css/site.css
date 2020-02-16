@@ -27,6 +27,9 @@ input[type=text], input[type=password], textarea {
         font-size: 14px;
     }
 */
+body{
+    color:#555;
+}
 .headshot {
     max-width: 50px;
 }
