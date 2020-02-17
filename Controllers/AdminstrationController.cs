@@ -390,5 +390,14 @@ namespace edu_first.Controllers
             return RedirectToAction("AddSession");
 
         }
+
+
+        //========= Register Student ==============
+        // GET: Add Registration
+        [HttpGet]
+        public IActionResult AddReg()
+        {
+            return View();
+        }
     }
 }

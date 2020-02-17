@@ -73,8 +73,3 @@ inpuBtn.addEventListener("keyup", function () {
         btnSession.disabled = false;
     }
 })
-inpuBtn.addEventListener("blur", function () {
-        inpuBtn.value = "";
-        inpuMsg.innerHTML = "";
-        btnSession.disabled = false;
-})
