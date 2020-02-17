@@ -4,56 +4,60 @@
     int counter = 0;
 }
 
-<h2>@ViewData["Title"]</h2>
 
-<div class="row">
-    <div class="offset-sm-2 col-md-6">
-        <form asp-controller="Adminstration" asp-action="EditRole" method="post">
-            <h4>Edit role.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RoleName"></label>
-                <input asp-for="RoleName" class="form-control" />
-                <span asp-validation-for="RoleName" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-default">Update</button>
-        </form>
+
+<div class="display-flex">
+    <div class="row div-form">
+        <h3 class="page-title">@ViewData["Title"]</h3>
+        <h6>Edit a new role.</h6>
+        <div class="">
+            <form asp-controller="Adminstration" asp-action="EditRole" method="post">               
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="RoleName"></label>
+                    <input asp-for="RoleName" class="form-control" />
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-default">Update</button>
+            </form>
+        </div>
+    </div>
+    <br /><br />
+    <div class="row div-table">
+              <h3 class="page-title">List of Users in Role</h3>
+              <h6>Edit or delete role using the manage record column</h6>
+              <br />
+              <div class="">
+                  <table class="table table-hover table-striped table-bordered table-borderless">
+                      <thead>
+                          <tr>
+                              <td><b> Number</b></td>
+                              <td><b>UserName</b></td>
+
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @if (Model.Users.Any())
+                          {
+                              @foreach (var user in Model.Users)
+                              {
+                                  counter += 1;
+                                  <tr>
+                                      <td>@counter</td>
+                                      <td>@user</td>
+                                  </tr>
+                              }
+                          }
+                          else
+                          {
+                              <tr><td colspan="2">No records of Users yet!</td></tr>
+                          }
+
+                      </tbody>
+
+
+                  </table>
+                  <a asp-action="EditUsersInRole" asp-controller="Adminstration" class="btn btn-primary" style="width:auto">Add Users</a>
+              </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="offset-sm-2 col-md-6">
-        <table class="table table-hover table-striped table-bordered table-borderless">
-            <thead>
-                <tr>
-                    <td><b> Number</b></td>
-                    <td><b>UserName</b></td>
-
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Users.Any())
-                {
-                    @foreach (var user in Model.Users)
-                    {
-                        counter += 1;
-                        <tr>
-                            <td>@counter</td>
-                            <td>@user</td>
-                        </tr>
-                    }
-                }
-                else
-                {
-                    <tr><td colspan="2">No records of Users yet!</td></tr>
-                }
-
-            </tbody>      
-                
-           
-        </table>
-        <a asp-action="EditUsersInRole" asp-controller="Adminstration" class="btn btn-primary" style="width:auto">Add Users</a>
-    </div>
-</div>
-
