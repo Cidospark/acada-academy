@@ -10,9 +10,8 @@ namespace AcadaAcademy.Models
 {
     public class Registration
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RegistrationId { get; set; }
+        [RegularExpression(@"^[0-9]{4}+/[0-9]{4}+/[0-9]{1,}+$", ErrorMessage = "Invalid Session Fromat")]
+        public string RegistrationId { get; set; }
         
         public AcadaUser User { get; set; }
         public Session Session { get; set; }

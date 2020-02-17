@@ -14,7 +14,7 @@ namespace AcadaAcademy.ViewModels
         public int SessionId { get; set; }
 
         [Required]
-        [StringLength(10, ErrorMessage = "Session must be between 4 and 10 characters", MinimumLength = 4)]
+        [StringLength(10, ErrorMessage = "Invalid Session Fromat. See example: 2020/2021", MinimumLength = 4)]
         public string Name { get; set; }
     }
 }

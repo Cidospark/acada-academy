@@ -10,8 +10,12 @@ namespace AcadaAcademy.Models
 {
     public class Course
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CourseId { get; set; }
 
+        [Required]
+        [MaxLength(50, ErrorMessage = "Course title cannot be more than 50 characters")]
         public string Title { get; set; }
 
         public virtual ICollection<Registration> Registrations { get; set; }
