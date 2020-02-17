@@ -392,10 +392,10 @@ namespace edu_first.Controllers
         }
 
 
-        //========= Register Student ==============
+        //========= Enrollment ==============
         // GET: Add Registration
         [HttpGet]
-        public IActionResult AddReg()
+        public IActionResult AddEnrollment()
         {
             return View();
         }
