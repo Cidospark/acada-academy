@@ -58,6 +58,7 @@ namespace LostZone
             services.AddScoped<IAcadaRepository, AcadaRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ISessionRepository, SessionRepository>();
+            services.AddScoped<IRegistrationRepository, RegistrationRepository>();
             services.AddTransient<AcadaContextSeedData>();
             services.AddLogging();
 
