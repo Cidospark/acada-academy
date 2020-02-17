@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<AcadaAcademy.DataModels.Item>
 @{
-    ViewBag.Title = "HOME";
+    ViewBag.Title = "HOME"; 
+    ViewData["sitename"] = "ACADA ACDEMY";
 }
 <div class="row">
-    
+
     <div class="col-md-12">
         <p style="height:40px;"></p>
-        <h2> Welcome To OMBUDSBOT </h2>
+        <h2> Welcome To @ViewData["sitename"] </h2>
         <p style="height:20px;"></p>
         <p> Here you will report infrastructure issues you discover in your locatiion</p>
         <p> You can also do it real time with your facebook messenger app. Search for OMBUDSBOT!</p>
