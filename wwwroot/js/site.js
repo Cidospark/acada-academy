@@ -62,7 +62,7 @@
 let inpuBtn = document.getElementById("sessioinInput");
 let btnSession = document.getElementById("addSessionBtn");
 let inpuMsg = document.getElementById("sessioinInputMsg"); 
-let patt = /\d{4}\/\d{4}$/;
+let patt = /^\d{4}\/\d{4}$/;
 
 inpuBtn.addEventListener("keyup", function () {
     if (!inpuBtn.value.match(patt)) {
