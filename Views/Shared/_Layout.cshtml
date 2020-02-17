@@ -28,6 +28,7 @@
         <a class="list-group-item" asp-controller="App" asp-action="Contact"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i>&nbsp;Contact Us</a>
         @if (User.Identity.IsAuthenticated)
         {
+            <a class="list-group-item" asp-controller="Adminstration" asp-action="AddReg"><i class="fa fa-edit fa-fw" aria-hidden="true"></i>&nbsp;Register Students</a>
             <a class="list-group-item" asp-controller="Adminstration" asp-action="AddCourse"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp;Manage Courses</a>
             <a class="list-group-item" asp-controller="Adminstration" asp-action="AddSession"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>&nbsp;Manage Sessions</a>
             <a class="list-group-item" asp-controller="Adminstration" asp-action="ListAllAcadaUser"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp;Manage Users</a>
