@@ -1,4 +1,116 @@
-﻿@{
+﻿@model RegistrationViewModel
+@inject IRegistrationRepository enrollments
+@inject ISessionRepository sessions
+@inject UserManager<AcadaUser> users
+
+@{
     ViewBag.Title = "Manage Enrollments";
+    int counter = 0;
+    var sessionList = sessions.fetchAllSession();
+    var usersList = await users.GetUsersInRoleAsync("Student");
 }
-<h3 class="page-title">@ViewBag.Title</h3>
+
+
+<div class="display-flex">
+    <div class="row div-form">
+        <h3 class="page-title">@ViewBag.Title</h3>
+        <h6>Enroll a student.</h6>
+        <div class="">
+            <form asp-controller="Adminstration" asp-action="AddEnrollment" method="post">
+
+                <hr />
+
+                <div class="form-group">
+                    <select asp-for="Session" class="custom-select mr-sm-2 selectBox" id="selectBox">
+                        <option value="">Select Session</option>
+                        @foreach (var session in sessionList)
+                        {
+                            <option value="@session.SessionId">@session.Name</option>
+                        }
+                    </select>
+                </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="RegistrationId"></label>
+                    <input asp-for="RegistrationId" class="form-control" id="regInput" readonly />
+                    <span asp-validation-for="RegistrationId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <select asp-for="User" class="custom-select mr-sm-2 selectBox">
+                        <option value="">Select User</option>
+                        @foreach (var user in usersList)
+                        {
+                            <option value="@user.Id">@user.LastName @user.FirstName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Course"></label>
+                    <input asp-for="Course" class="form-control" />
+                    <span asp-validation-for="Course" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-default">Enroll Student</button>
+            </form>
+        </div>
+    </div>
+
+    <br /><br />
+    <div class="row div-table">
+        <h3 class="page-title">List of Enrollments</h3>
+        <h6>Edit or delete enrollment using the manage record column</h6>
+        <br />
+        <div class="">
+            <table class="table table-hover table-striped table-bordered table-borderless">
+                <thead>
+                    <tr>
+                        <th><b>Serial Number</b></th>
+                        <th><b>Course</b></th>
+                        <th><center><b>Manage Record</b></center></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var enrollment in enrollments.fetchAllEnrollments())
+                    {
+                        counter += 1;
+                        <tr>
+                            <td>@counter</td>
+                            <td>@enrollment.RegistrationId</td>
+                            <td>
+                                <div class="btn-mgr-records">
+                                    <form asp-action="DeleteCourse" asp-controller="Adminstration" asp-route-id="@enrollment.RegistrationId" method="post">
+                                        <a asp-action="EditCourse" asp-controller="Adminstration" asp-route-id="@enrollment.RegistrationId">
+                                            <i class="fa fa-pencil edit"></i>
+                                        </a>
+                                        <span class="sep">|</span>
+                                        <button class="detbtn" type="submit" onclick="return confirm('This action will delete course @enrollment.RegistrationId, \nPlease confirm action')">
+                                            <i class="fa fa-trash-o del"></i>
+                                        </button>
+
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    let selectBox = document.getElementById("selectBox");
+    let regInput = document.getElementById("regInput");
+    var d = new Date();
+    var n = d.getTime();
+    let patt = /^\d{4}\/\d{4}$/;
+
+    selectBox.addEventListener("change", function () {
+        let sess = selectBox.options[selectBox.selectedIndex].text;
+        if (sess.match(patt)) {
+            regInput.value = selectBox.options[selectBox.selectedIndex].text + "-" + n + Math.floor(Math.random() * 10);;
+        } else {
+            regInput.value = "";
+        }
+    })
+</script>
