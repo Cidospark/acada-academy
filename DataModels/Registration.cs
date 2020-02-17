@@ -10,6 +10,7 @@ namespace AcadaAcademy.Models
 {
     public class Registration
     {
+        [Required]
         [RegularExpression(@"^[0-9]{4}+/[0-9]{4}+/[0-9]{1,}+$", ErrorMessage = "Invalid Session Fromat")]
         public string RegistrationId { get; set; }
         
