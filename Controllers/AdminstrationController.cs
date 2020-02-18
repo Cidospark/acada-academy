@@ -277,10 +277,10 @@ namespace edu_first.Controllers
         {
 
 
-            var role = await _roleManager.FindByIdAsync(id);
+            var role = await _roleManager.FindByIdAsync(userId);
             if (role == null)
             {
-                ViewBag.ErrorMessage = $"User with Id = {id} cannot be found";
+                ViewBag.ErrorMessage = $"User with Id = {userId} cannot be found";
                 return View("Not Found");
             }
             else
