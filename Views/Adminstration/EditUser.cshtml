@@ -72,7 +72,13 @@
                             {
                                 <tr>
                                     <td>@role</td>
-                                    <td>Delete</td>
+                                    <td>
+                                        <form asp-action="DeleteUserInRoles" asp-controller="Adminstration" asp-route-id="@role" method="post">                                           
+                                            <button class="detbtn" type="submit" onclick="return confirm('This action will delete role @role, \nPlease confirm action')">
+                                                <i class="fa fa-trash-o del"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             }
                         }
@@ -109,5 +115,6 @@
         
     </div>
 </div>
+
 
 
