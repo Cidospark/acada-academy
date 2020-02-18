@@ -9,67 +9,71 @@
 
 @if (Model.Any())
 {
-    
-    <div class="row">
-        <div class="col-md-2 col-md-offset-1">
-            <a class="btn btn-primary" style="width:auto" asp-controller="Account" asp-action="Register"> Add New User</a>
+    <h3 class="page-title">@ViewData["Title"]</h3>
+
+    <div class="">
+        <a class="btn btn-primary" style="width:auto" asp-controller="Account" asp-action="Register"> Add New User</a>
+    </div>
+
+    <div class="display-flex">
+
+
+        <div class="row div-table">
+            <div class="">
+
+                <table class="table table-hover table-striped table-bordered table-borderless">
+                    <thead>
+                        <tr>
+                            <td><b> Number</b></td>
+                            <td><b>UserName</b></td>
+                            <td><b>FirstName</b></td>
+                            <td><b>LastName</b></td>
+                            <td><b>Gender</b></td>
+                            <td><b>Email</b></td>
+                            <td><b>Phone</b></td>
+                            <td><b> </b></td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Any())
+                        {
+                            @foreach (var user in Model)
+                            {
+                                counter += 1;
+                                <tr>
+                                    <td>@counter</td>
+                                    <td>@user.UserName</td>
+                                    <td>@user.FirstName</td>
+                                    <td>@user.LastName</td>
+                                    <td>@user.Gender</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.PhoneNumber</td>
+                                    <td>
+                                        <form asp-action="DeleteUser" asp-controller="Adminstration" asp-route-id="@user.Id" method="post">
+                                            <a class="btn btn-primary" asp-controller="Adminstration" asp-action="EditUser" asp-route-id="@user.Id">Edit</a>
+                                            &nbsp; | &nbsp;
+                                            <button class="btn btn-danger" type="submit">Delete</button>
+
+                                        </form>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+
+                    </tbody>
+
+
+                </table>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">           
+}
 
-            <table class="table table-hover table-striped table-bordered table-borderless">
-                <thead>
-                    <tr>
-                        <td><b> Number</b></td>
-                        <td><b>UserName</b></td>
-                        <td><b>FirstName</b></td>
-                        <td><b>LastName</b></td>
-                        <td><b>Gender</b></td>
-                        <td><b>Email</b></td>
-                        <td><b>Phone</b></td>
-                        <td><b> </b></td>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.Any())
-                                {
-                    @foreach (var user in Model)
-                                    {
-                                        counter += 1;
-                    <tr>
-                        <td>@counter</td>
-                        <td>@user.UserName</td>
-                        <td>@user.FirstName</td>
-                        <td>@user.LastName</td>
-                        <td>@user.Gender</td>
-                        <td>@user.Email</td>
-                        <td>@user.PhoneNumber</td>
-                        <td>
-                            <form asp-action="DeleteUser" asp-controller="Adminstration" asp-route-id="@user.Id" method="post">
-                                <a class="btn btn-primary" asp-controller="Adminstration" asp-action="EditUser" asp-route-id="@user.Id">Edit</a>
-                                &nbsp; | &nbsp;
-                                <button class="btn btn-danger" type="submit">Delete</button>
-
-                            </form>
-
-                        </td>
-                    </tr>
-                }
-        }
-
-
-                </tbody>
-
-
-            </table>
-        </div>
-    </div>
-    }
-
-    else
-    {
+else
+{
     <div class="card">
         <div class="card-header">
             No Users Yet
@@ -83,4 +87,4 @@
         </div>
     </div>
 
-    }
+}

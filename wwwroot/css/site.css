@@ -137,7 +137,11 @@ h2 {
 .btn-mgr-records{
     text-align:center;
 }
-.del, .edit{cursor:pointer;}
+.del, .edit{
+    cursor:pointer;
+    font-size:16px !important;
+}
+
 .del{color:#faa;}
 .del:hover{color:#f55; font-weight:bold;}
 .edit:hover{color:navy; font-weight:bold;}
